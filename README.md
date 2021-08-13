@@ -1,27 +1,69 @@
-# SPS2021
+# Usage of ngx-plotly
+## Dependencies
+The library relies on the following peerDependencies. Other versions might work but no gurantee for that:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+```
+    "@angular/common": "^10.1.1",
+    "@angular/core": "^10.1.1",
+    "@angular/material": "^10.2.0",
+    "@angular/cdk": "^10.2.0",
+    "@ngrx/component-store": "10.1.0",
+    "@types/plotly.js": "1.50.18",
+    "plotly.js": "^1.55.2",
+    "bootstrap": "4.5.2"
+```
 
-## Development server
+## Usage
+All the functionality has to be wrapped into `<app-plot-container>`. Within this container you can put different components from the libarary. Here is an example with (almost) all the options you have. I will elaborate on the different components later.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+<lib-plot-container>
+        <lib-plot
+          [config]="plotConfig"
+          [layout]="plotLayout"
+          [data]="plotData"
+          [tags]="taggedAreas"
+          (updateShapes)="updateShapes($event)"
+          (selectShape)="selectShape($event)"
+          (deleteShapes)="deleteShapes($event)"
+          (zoom)="loadVisualizationData($event)"
+          [lazyLoading]="true"
+        ></lib-plot>
+        <lib-action-bar
+          [singleAxisTooltip]="'datasets.details.tagging.toolbar.btn_plot_normal' | translate"
+          [multiAxisTooltip]="'datasets.details.tagging.toolbar.btn_plot_multiple_axes' | translate"
+          [zoomTooltip]="'datasets.details.tagging.toolbar.btn_zoom_mode' | translate"
+          [rangeSelectTooltip]="'datasets.details.tagging.toolbar.btn_horizontal_mode' | translate"
+          [boxSelectTooltip]="'datasets.details.tagging.toolbar.btn_horizontal_mode' | translate"
+          [deleteTooltip]="'datasets.details.tagging.toolbar.btn_delete_tag' | translate"
+          [selectedDisplayType]="plotDisplayType"
+          [config]="{
+            chartType: { single: true, multi: true },
+            chartDisplayType: { lines: true, markers: true, linesmarkers: true },
+            chartActions: { zoom: true, rangeSelect: true, boxSelect: true, delete: true }
+          }"
+        ></lib-action-bar>
+        <lib-load-data
+          [allListElements]="features"
+          [chipElements]="filterFeaturesSelected"
+          (load)="loadFeatures($event)"
+          [scaleDataText]="'datasets.details.tagging.toolbar.toggle_scaled_data_label' | translate"
+          [scaleDataTooltip]="'datasets.details.tagging.toolbar.toggle_scaled_data_tooltip' | translate"
+          [label]="'datasets.details.tagging.filter.placeholder' | translate"
+          [loadButtonText]="'datasets.details.tagging.filter.btn_load_data' | translate"
+        ></lib-load-data>
+        <lib-status-bar [visibleObsText]="'shared.plot.visible_obs' | translate" [visibleObsTooltip]="visibleObsTooltip" [visibleObsPercent]="visibleObsPercent"></lib-status-bar>
+      </lib-plot-container>
+```
 
-## Code scaffolding
+### `<lib-plot>` component
+The `<lib-plot>` component is the core unit of the charting library.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You have to pass in at least the `[data]` property with an array of type `PlotData`. Check out plotly.js homepage to find out what you can pass in there.
 
-## Build
+The `[layout]` can define various things for the look and feel of the plot. This also corresponds to the layouts which plotly itself defines. The type for this is `PlotLayout`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+With `[config]` you can enable or disable things like the plotly logo, links to the homepage on the chart and so on.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### `<lib-action-bar>` component
+The `<lib-action-bar>` component provides wrapper functionality for things you can do with the plotly chart. You can configure which button you want to display and set tooltips for the different buttons.
