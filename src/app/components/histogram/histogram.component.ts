@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlotData } from '@wm-fe/ngx-plotly';
+import { PlotConfig, PlotData } from '@wm-fe/ngx-plotly';
 
 @Component({
   selector: 'app-histogram',
@@ -8,6 +8,9 @@ import { PlotData } from '@wm-fe/ngx-plotly';
 })
 export class HistogramComponent implements OnInit {
   plotData!: Array<PlotData>;
+  plotConfig: PlotConfig = {
+    displaylogo: false, // logo has to be disabled since it currently overwrites classes which are used by action bar icons
+  };
 
   constructor() {}
 
