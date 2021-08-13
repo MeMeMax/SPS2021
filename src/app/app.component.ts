@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PlotConfig, PlotData, PlotLayout } from '@wm-fe/ngx-plotly';
+import { ActionBarConfig } from '@wm-fe/ngx-plotly/lib/models/action-bar.model';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,9 @@ export class AppComponent implements OnInit {
     displayModeBar: false,
     modeBarButtonsToRemove: ['sendDataToCloud', 'lasso2d', 'toggleSpikelines'],
     responsive: true,
+  };
+  actionBarConfig: ActionBarConfig = {
+    chartDisplayType: { lines: true, linesmarkers: true, markers: true },
   };
 
   ngOnInit() {
