@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PlotData, PlotLayout } from '@wm-fe/ngx-plotly';
+import { PlotConfig, PlotData, PlotLayout } from '@wm-fe/ngx-plotly';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +25,12 @@ export class AppComponent implements OnInit {
       },
     },
     title: 'Data Labels on the Plot',
+  };
+  plotConfig: PlotConfig = {
+    displaylogo: false,
+    displayModeBar: false,
+    modeBarButtonsToRemove: ['sendDataToCloud', 'lasso2d', 'toggleSpikelines'],
+    responsive: true,
   };
 
   ngOnInit() {
