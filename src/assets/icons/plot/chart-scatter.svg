@@ -1,0 +1,13 @@
+<!--
+Copyright (C) 2021 Weidmueller Interface GmbH & Co. KG
+All rights reserved.
+-->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="chart-scatter" transform="translate(-88 -88)">
+    <g id="Gruppe_15222" data-name="Gruppe 15222">
+      <path id="Pfad_11532" data-name="Pfad 11532" class="cls-2" d="M107.5,108h-19a.5.5,0,0,1-.5-.5v-19a.5.5,0,0,1,1,0V107h18.5a.5.5,0,0,1,0,1Z"/>
+      <path id="Pfad_11533" data-name="Pfad 11533" class="cls-3" d="M93,101.5a1.5,1.5,0,1,1-1.5-1.5A1.5,1.5,0,0,1,93,101.5Zm7.5-2.5a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,100.5,99Zm5-5a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,105.5,94Zm-9,1A1.5,1.5,0,1,0,98,96.5,1.5,1.5,0,0,0,96.5,95Z"/>
+    </g>
+  </g>
+</svg>
